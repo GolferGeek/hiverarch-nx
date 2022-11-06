@@ -1,7 +1,7 @@
 {
-  "name": "hiverarchy",
+  "name": "nest-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/hiverarchy/src",
+  "sourceRoot": "apps/nest-api/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,10 +10,10 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/hiverarchy",
-        "main": "apps/hiverarchy/src/main.ts",
-        "tsConfig": "apps/hiverarchy/tsconfig.app.json",
-        "assets": ["apps/hiverarchy/src/assets"]
+        "outputPath": "dist/apps/nest-api",
+        "main": "apps/nest-api/src/main.ts",
+        "tsConfig": "apps/nest-api/tsconfig.app.json",
+        "assets": ["apps/nest-api/src/assets"]
       },
       "configurations": {
         "production": {
@@ -22,8 +22,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/hiverarchy/src/environments/environment.ts",
-              "with": "apps/hiverarchy/src/environments/environment.prod.ts"
+              "replace": "apps/nest-api/src/environments/environment.ts",
+              "with": "apps/nest-api/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -32,11 +32,11 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "hiverarchy:build"
+        "buildTarget": "nest-api:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "hiverarchy:build:production"
+          "buildTarget": "nest-api:build:production"
         }
       }
     },
@@ -44,14 +44,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/hiverarchy/**/*.ts"]
+        "lintFilePatterns": ["apps/nest-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/hiverarchy/jest.config.ts",
+        "jestConfig": "apps/nest-api/jest.config.ts",
         "passWithNoTests": true
       }
     }
