@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphqlModule } from './graphql.module';
-import { MongoModule } from './mongodb.module';
+import { MongoModule } from './mongo.module';
 import { ConfigModule } from './config.module';
 
 @Module({

@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ListUsersInput } from './dto/list-users.input';
 
@@ -10,7 +10,7 @@ import { ListUsersInput } from './dto/list-users.input';
 export class UsersService {
   constructor(
     @InjectModel(User.name)
-    private readonly userModel: Model<User>
+    private readonly userModel: Model<User>,
   ) {}
 
   create(createUserInput: CreateUserInput) {
@@ -18,9 +18,8 @@ export class UsersService {
     return user.save();
   }
 
-  findAll(paginationQuery: ListUsersInput) {
-    const { limit, offset } = paginationQuery;
-    return this.userModel.find().skip(offset).limit(limit).exec();
+  findAll() {
+    return this.userModel.find().exec();
   }
 
   async findOne(id: string) {
@@ -47,9 +46,9 @@ export class UsersService {
     return user.remove();
   }
 
-  async getUsers(paginationQuery: ListUsersInput) {
+  async getUsers() {
     const count = await this.userModel.count();
-    const users = await this.findAll(paginationQuery);
+    const users = await this.findAll();
     return { users, count };
   }
 }
